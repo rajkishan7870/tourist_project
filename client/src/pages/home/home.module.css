@@ -1,0 +1,26 @@
+.topCont{
+    gap: 10px;
+}
+.parentCont{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.formParentCont{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid grey;
+    margin: 0% 10% 10% 10%;
+    padding: 0% 5% 5% 20%;
+}
+
+.searchForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid grey;
+    margin: 0% 10% 10% 10%;
+    padding: 0% 5% 5% 20%;
+}
