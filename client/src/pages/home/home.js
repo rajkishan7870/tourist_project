@@ -11,11 +11,7 @@ export default function Home() {
   const [searchData, setSearchData] = useState({});
   const [touristPlaceData, setTouristPlaceData] = useState([]);
   const [error, setError] = useState("");
-  const [searchedData,setSearchedData] = useState([{
-    place : "",
-    description : "",
-    rating : 0
-  }]);
+  const [searchedData, setSearchedData] = useState([]);
 
   useEffect(() => {
     axios
@@ -31,19 +27,20 @@ export default function Home() {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
 
-    touristPlaceData.forEach((obj)=>{
-      if (searchData.place === "") {
-        setError("Enter place first");
-      }
-      else if(obj.place===searchData.place){
-        setSearchedData([{place : obj.place, description : obj.description, rating : obj.rating}])
-      }
-      else {
-        setError("No Data present till Now!!!!!!!!!");
-      }
-    })
-      
-     
+    if (searchData.place === "") {
+      setError("Please enter place first");
+      return;
+    }
+
+    const filtered = touristPlaceData.filter(
+      (obj) => obj.place === searchData.place
+    );
+
+    if (filtered.length > 0) {
+      setSearchedData(filtered);
+    } else {
+      setError("No data present till now");
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -151,13 +148,12 @@ export default function Home() {
                 severity="error"
                 sx={{
                   width: "50%",
-                  
                 }}
               >
                 {error}
               </Alert>
             )}
-            <Result data={searchedData}/>
+            <Result data={searchedData} />
           </div>
         </form>
       </div>
