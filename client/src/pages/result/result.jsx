@@ -3,10 +3,10 @@ import React from 'react'
 export default function Result({data}) {
   return (
     <div>
-        {data.map((obj)=>{
+        {data.map((obj,index)=>{
             return(
-                <div>
-                    <div>{obj.place}</div>
+                <div key={index}>
+                    <div>{obj.place}-{obj.rating}</div>
                 </div>
             )
         })}
